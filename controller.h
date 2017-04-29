@@ -12,19 +12,6 @@
 #include <QMediaPlayer>
 #include <QKeyEvent>
 
-class PushButton : public QPushButton
-{
-    Q_OBJECT
-
-public:
-    PushButton(QWidget *parent = 0) : QPushButton(parent) {}
-    PushButton(QIcon icon, QString str, QWidget *parent) : QPushButton(icon, str, parent) {}
-    ~PushButton() {}
-
-protected:
-    void keyPressEvent(QKeyEvent *event) { event->ignore(); }
-};
-
 class Controller : public QHBoxLayout
 {
     Q_OBJECT
@@ -37,6 +24,7 @@ public slots:
     void stateChanged(QMediaPlayer::State state);   //播放状态发生改变
     void setPosition(qint64 value);                 //当前播放进度
     void setDuration(qint64 value);                 //时长
+    void setVolume(int value);                      //设置音量
 
 private slots:
     void playClicked();                             //“播放/暂停”按钮按下时触发
@@ -57,11 +45,11 @@ private:
     QLabel *position_label;                 //显示当前时间的标签
     QSlider *duration_slider;               //进度条
     QLabel *duration_label;                 //显示视频时长的标签
-    PushButton *back_button;                //“上一个”按钮
-    PushButton *play_button;                //“播放/暂停”按钮
-    PushButton *next_button;                //“下一个”按钮
+    QPushButton *back_button;                //“上一个”按钮
+    QPushButton *play_button;                //“播放/暂停”按钮
+    QPushButton *next_button;                //“下一个”按钮
     QSlider *volume_slider;                 //音量条
-    PushButton *full_button;                //全屏按钮
+    QPushButton *full_button;                //全屏按钮
 };
 
 #endif // CONTROLLER_H

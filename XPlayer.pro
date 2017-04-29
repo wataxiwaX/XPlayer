@@ -5,7 +5,6 @@
 #-------------------------------------------------
 
 QT += core gui multimedia multimediawidgets
-IMAGE_INSTALL += imx-vpu imx-test firmware-imx-vpu-imx6d
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     playerwidget.cpp \
-    controller.cpp
+    controller.cpp \
+    videowidget.cpp
 
 HEADERS  += mainwindow.h \
     playerwidget.h \
-    controller.h
+    controller.h \
+    videowidget.h
 
 RESOURCES += \
     icons.qrc

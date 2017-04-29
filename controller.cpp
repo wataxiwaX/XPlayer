@@ -13,11 +13,11 @@ Controller::Controller(QWidget *parent)
     position_label = new QLabel(tr("00:00:00"), parent);
     duration_slider = new QSlider(Qt::Horizontal, parent);
     duration_label = new QLabel(tr("00:00:00"), parent);
-    back_button = new PushButton(QIcon(":/images/back.png"), tr(""), parent);
-    play_button = new PushButton(QIcon(":/images/play.png"), tr(""), parent);
-    next_button = new PushButton(QIcon(":/images/next.png"), tr(""), parent);
+    back_button = new QPushButton(QIcon(":/images/back.png"), tr(""), parent);
+    play_button = new QPushButton(QIcon(":/images/play.png"), tr(""), parent);
+    next_button = new QPushButton(QIcon(":/images/next.png"), tr(""), parent);
     volume_slider = new QSlider(Qt::Horizontal, parent);
-    full_button = new PushButton(QIcon(":/images/full.png"), tr(""), parent);
+    full_button = new QPushButton(QIcon(":/images/full.png"), tr(""), parent);
 
     position_label->setMaximumSize(64, 48);
     duration_slider->setMaximumWidth(256);
@@ -64,12 +64,6 @@ Controller::~Controller()
 {
 }
 
-void Controller::setDuration(qint64 value)
-{
-    duration_slider->setMaximum(value / 1000);
-    updateDurationInfo(value);
-}
-
 void Controller::stateChanged(QMediaPlayer::State state)
 {
     switch(state) {
@@ -102,11 +96,22 @@ void Controller::positionSlided()
     emit positionChange(qint64(duration_slider->value() * 1000));
 }
 
+void Controller::setDuration(qint64 value)
+{
+    duration_slider->setMaximum(value / 1000);
+    updateDurationInfo(value);
+}
+
 void Controller::setPosition(qint64 value)
 {
     if(!duration_slider->isSliderDown())
         duration_slider->setValue(value / 1000);
     updateCurrentInfo(value);
+}
+
+void Controller::setVolume(int value)
+{
+    volume_slider->setValue(value);
 }
 
 void Controller::updateDurationInfo(qint64 value)
