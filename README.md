@@ -3,4 +3,4 @@
 
 ### Linux:
 
-![](http://i63.tinypic.com/14so9hj.jpg)
+![](http://i68.tinypic.com/29vgsxz.jpg)
